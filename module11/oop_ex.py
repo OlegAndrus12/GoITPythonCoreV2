@@ -1,31 +1,12 @@
 import requests
-from typing import List, Dict
 from bs4 import BeautifulSoup
 
-
-def count_general_income(records: Dict[str, float]) -> float:
-    for key, value in records:
-        records.
-
-
-d: Dict[str, float] = {"June": 1212.321}
-
-
-
-class Tag:
-    def __init__(self, url, text):
-        self.url = url
-        self.text = text
-
-
-from dataclasses import dataclass
-
-@dataclass
 class Quote:
-    id: int
-    text: str
-    author: str
-    tags: List[Tag]
+    def __init__(self, id, text, author, tags):
+        self.id = id
+        self.text = text
+        self.author = author
+        self.tags = tags
     
     def __repr__(self):
         return f"Quote #{self.id}: by {self.author}"
@@ -33,10 +14,6 @@ class Quote:
     def __str__(self):
         return self.text
 
-
-
-q = Quote(id="12sdasds", text="asdas", author = "Kafka", tags=[])
-print(q)
 
 class QuoteScraper:
     def __init__(self, url):
@@ -78,6 +55,4 @@ scraper = QuoteScraper("https://quotes.toscrape.com/")
 scraper.fetch()
 scraper.parse()
 all_quotes = scraper.get_all_quotes()
-
-for quote in all_quotes:
-    print(quote.author)
+print(all_quotes[0].author)

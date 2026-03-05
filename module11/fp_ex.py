@@ -32,10 +32,7 @@ html = fetch(url)
 soup = parse(html)
 all_quotes = get_all_quotes(soup)
 
-
-
 for i, q in enumerate(all_quotes, 1):
-    q["tags"][0]["url"]
     print(f"\nQuote {i}:")
     print("Text:", q["text"])
     print("Author:", q["author"])
