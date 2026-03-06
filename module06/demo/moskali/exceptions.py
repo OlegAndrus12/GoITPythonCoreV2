@@ -1,2 +1,0 @@
-class NotInRange(Exception):
-    pass
