@@ -1,10 +1,5 @@
-# password, username
-# admin and guest
-# alt + shift + up/down
-
-
-username = input("Enter your username please")
-password = input("Enter your password please")
+username = input("Enter your username: ")
+password = input("Enter your password: ")
 
 if username == "admin":
     if password == "qwerty":

@@ -1,11 +1,10 @@
+# try / except / else / finally structure
+
 try:
-    print("asdsad")
-    print(1 / 0)
-except Exception as asdsad:
-    print(asdsad)
-    print(type(asdsad))
-    print("ASdsadsdsadsadasd")
+    result = 10 / 0
+except ZeroDivisionError as e:
+    print(f"Error: {e}")
 else:
-    print("No exception")
+    print(f"Result: {result}")   # runs only if no exception was raised
 finally:
-    print("Ok then")
+    print("Done.")               # always runs

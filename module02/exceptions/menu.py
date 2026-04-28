@@ -6,33 +6,6 @@ menu = """
     #5: exit
 """
 
-def f1():
-    pass
-
-def f2():
-    pass
-
-
-def f3():
-    pass
-
-
-def f4():
-    pass
-
-def f5():
-    pass
-
-
-print(menu)
-
-options = {
-    1: f1,
-    2: f2,
-    3: f3,
-    4: f4
-}
-
 while True:
     try:
         choice = int(input("What would you like >>> "))
