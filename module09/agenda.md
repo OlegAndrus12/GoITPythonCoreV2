@@ -2,16 +2,16 @@
 
 1. [ ] The concept of objects in Python
 2. [ ] OOP paradigm in general
-3. [ ] Abstraction
-4. [ ] Encapsulation / Private / Public
-5. [ ] Inheritance / Method resolution order (MRO) / Multiple inheritance
-6. [ ] Polymorphism / Duck typing
+3. [ ] Abstraction (`cards.py` — ABC + abstract methods)
+4. [ ] Encapsulation / Private / Public (`07_encapsulation.py`)
+5. [ ] Inheritance / Method resolution order (MRO) / Multiple inheritance (`02_inherit.py`, `06_mro.py`)
+6. [ ] Polymorphism / Duck typing (`03_polymorphism.py`)
 7. [ ] OOP hands-on:
-    1. [ ] how to create a class?
-    2. [ ] constructor / initializator
-    3. [ ] what is self
-    4. [ ] fields / class attributes / methods
-    5. [ ] Aggregation
-    6. [ ] Composition
-    7. [ ] data classes
-    8. [ ] custom exception
+    1. [ ] how to create a class? (`01_init.py`)
+    2. [ ] constructor / initializator (`01_init.py`)
+    3. [ ] what is self (`01_init.py`)
+    4. [ ] fields / class attributes / methods (`01_init.py`)
+    5. [ ] Aggregation (`05_aggregation.py`, `aggr_comp.py`)
+    6. [ ] Composition (`04_composition.py`, `aggr_comp.py`)
+    7. [ ] data classes (`08_dataclasses.py`)
+    8. [ ] custom exception (`09_exceptions.py`)

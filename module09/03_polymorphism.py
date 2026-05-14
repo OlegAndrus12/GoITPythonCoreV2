@@ -1,51 +1,63 @@
-class Animal:
-    def __init__(self, nickname: str, age: int) -> None:
-        self.nickname = nickname
-        self.age = age
-
-    def get_info(self) -> str:
-        return f"It's animal. His name is {self.nickname} and he's {self.age} years old"
+# polymorphism: same interface, different implementations
+# duck typing: if it has .send() it works — no shared base class required
 
 
-class Cat(Animal):
-    def __init__(self, nickname: str, age: int, owner: str) -> None:
-        super().__init__(nickname, age)
-        self.owner = owner
-
-    def get_info(self) -> str:
-        return f"It's cat. His name is {self.nickname} and he's {self.age} years old"
-
-    def sound(self) -> str:
-        return f"{self.nickname} says Meow!"
+class EmailNotifier:
+    def send(self, message):
+        print(f"[Email] {message}")
 
 
-class Dog(Animal):
-    def __init__(self, nickname: str, age: int, owner: str) -> None:
-        super().__init__(nickname, age)
-        self.owner = owner
+class SlackNotifier:
+    def __init__(self, channel):
+        self.channel = channel
 
-    def get_info(self) -> str:
-        return f"It's dog. His name is {self.nickname} and he's {self.age} years old"
-
-    def sound(self) -> str:
-        return f"{self.nickname} says Woof!"
+    def send(self, message):
+        print(f"[Slack #{self.channel}] {message}")
 
 
-cat = Cat("Simon", 4, "Yurii")
-dog = Dog("Alisa", 7, "Vlad")
+class WebhookNotifier:
+    def __init__(self, url):
+        self.url = url
 
-for el in (cat, dog):
-    if type(el) is Dog:
-        print(f"{el.sound()} {el.get_info()}")
+    def send(self, message):
+        print(f"[Webhook → {self.url}] {message}")
+
+
+# duck typing: any object with a .send() method works here
+def notify_all(notifiers, message):
+    for notifier in notifiers:
+        notifier.send(message)
+
+
+notifiers = [
+    EmailNotifier(),
+    SlackNotifier("deployments"),
+    WebhookNotifier("https://hooks.example.com/xyz"),
+]
+
+notify_all(notifiers, "Deployment to production finished")
 
 print("--------------------")
-print(isinstance(dog, Animal))
-print(isinstance(dog, Cat))
-print(isinstance(dog, Dog))
-print("--------------------")
-print(type(dog) is Animal)
-print(type(dog) is Dog)
-print("------------------")
 
-print(dog.get_info())
-print(super(Dog, dog).get_info())
+# polymorphism via inheritance — overriding a method
+class BaseLogger:
+    def log(self, message):
+        print(f"[LOG] {message}")
+
+
+class FileLogger(BaseLogger):
+    def __init__(self, path):
+        self.path = path
+
+    def log(self, message):
+        print(f"[FILE:{self.path}] {message}")
+
+
+class SilentLogger(BaseLogger):
+    def log(self, message):
+        pass  # suppresses all output
+
+
+loggers = [BaseLogger(), FileLogger("/var/log/app.log"), SilentLogger()]
+for logger in loggers:
+    logger.log("server started")

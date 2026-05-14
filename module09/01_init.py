@@ -1,16 +1,34 @@
-#  explain abstraction
+# class structure: __init__, self, instance vs class attributes
+
+class Repository:
+    default_branch = "main"  # class attribute — shared across all instances
+
+    def __init__(self, name, owner):
+        self.name = name        # instance attributes — unique per object
+        self.owner = owner
+        self.stars = 0
+        self.branches = []
+
+    def star(self):
+        self.stars += 1
+
+    def info(self):
+        return f"{self.owner}/{self.name} [{self.default_branch}] stars:{self.stars}"
 
 
-class Animal:
-    def __init__(self, nickname, age):
-        self.nickname = nickname
-        self.age = age
+repo = Repository("django", "django")
+repo.star()
+repo.star()
+print(repo.info())           # django/django [main] stars:2
 
-    def get_info(self):
-        return f"It's animal. His name is {self.nickname} and he's {self.age} years old"
+repo2 = Repository("flask", "pallets")
+print(repo2.info())          # pallets/flask [main] stars:0
 
+# class attribute is accessible on the class itself and on any instance
+print(Repository.default_branch)   # main
+print(repo.default_branch)         # main
 
-animal = Animal("Simon", 4)
-print(animal.nickname)
-animal.age = 5
-print(animal.get_info())
+# mutating a class attribute on an instance creates a new instance attribute (shadows it)
+repo.default_branch = "develop"
+print(repo.default_branch)         # develop  (instance shadow)
+print(Repository.default_branch)   # main     (class attr unchanged)
